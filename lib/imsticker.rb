@@ -81,6 +81,8 @@ module Imsticker
     stickers_contents_json = JSON.parse(File.read(stickers_contents_json_file))
 
     # create a directory in Sticker Pack.stickerpack directory for each of the stickers. e.g., file_name.sticker, file_name.stickersequence
+    puts "Reading stickers directory ..."
+    number_of_stickers = 0
     Dir.entries('stickers').select {|entry|
       if entry != '.' && entry != '..'
         file = File.join('stickers', entry)
@@ -90,19 +92,23 @@ module Imsticker
         sticker_entry = ''
         # if single sticker, write Contents.json in it with content following Contents-sticker.json, copy the image file to the directory.
         if supported_exts.include?(ext)
-            sticker_entry = "#{file_name_without_ext}.sticker"
-            sticker_dir = File.join(sticker_target_directory, sticker_entry)
-            Dir.mkdir(sticker_dir)
-            FileUtils.cp(file, File.join(sticker_dir, entry))
-            sticker_contents_json['properties']['filename'] = entry
-            json = JSON.generate(sticker_contents_json)
-            File.open(File.join(sticker_dir, 'Contents.json'), "w") {|f|
-              f.write(json)
-            }
+          number_of_stickers += 1
+          puts "  Found #{entry} sticker"
+          sticker_entry = "#{file_name_without_ext}.sticker"
+          sticker_dir = File.join(sticker_target_directory, sticker_entry)
+          Dir.mkdir(sticker_dir)
+          FileUtils.cp(file, File.join(sticker_dir, entry))
+          sticker_contents_json['properties']['filename'] = entry
+          json = JSON.generate(sticker_contents_json)
+          File.open(File.join(sticker_dir, 'Contents.json'), "w") {|f|
+            f.write(json)
+          }
         end
 
         # if stickersequence, write Contents.json in it with content following Contents-stickersequence.json, copy the images files to the dir.
         if File.directory?(file)
+          puts "  Found #{entry} sticker sequence"
+          number_of_stickers += 1
           sticker_entry = "#{file_name_without_ext}.stickersequence"
           sticker_dir = File.join(sticker_target_directory, sticker_entry)
           Dir.mkdir(sticker_dir)
@@ -135,10 +141,13 @@ module Imsticker
       }
     }
 
+    puts "Processed #{number_of_stickers} stickers."
+
     # check if user provides icons
     rectangle_icon = 'icon1024x768.png'
     icons_directory = File.join(File.join(File.join(proj_tmp_dir, 'StickerPackExtension'), 'Stickers.xcstickers'), "iMessage App Icon.stickersiconset")
     if File.exist?(rectangle_icon)
+      puts "Found icon. Creating icons ..."
       processor = ImageResizer::Processor.new
       sizes = ['32x24', '27x20', '60x45', '74x55', '67x50']
       sizes.each {|size|
@@ -176,16 +185,20 @@ module Imsticker
           end
         }
       }
+    else
+      puts "Cannot find `icon1024x768.png`. Add `icon1024x768.png` to automate icons creation."
     end
 
     # cp the app store image
     FileUtils.cp rectangle_icon, File.join(icons_directory, "#{info['name']}.png")
 
     # copy the modified template to output directory
+    puts "Writing project to output directory ..."
     FileUtils.rm_rf './output'
     FileUtils.cp_r proj_tmp_dir, './output'
 
     # Rename project
+    puts "Renaming project name ..."
     xcodeproj = File.join('./output', 'Awesome Stickers.xcodeproj')
     new_xcodeproj = File.join('./output', "#{info['name']}.xcodeproj")
     pbxproj = File.join(xcodeproj, 'project.pbxproj')
@@ -206,7 +219,7 @@ module Imsticker
     new_info_plist_content = info_plist_content.gsub('Awesome Stickers', info['name'])
     File.open(info_plist, 'wb') {|f| f.write(new_info_plist_content)}
 
-    puts "Done"
+    puts "Done. Now you can open file \"output/#{info['name']}.xcodeproj\" and run it in the simulator."
   end
 
   def self.download_template(tmp_dir, template_dir)
