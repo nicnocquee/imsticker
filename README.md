@@ -37,6 +37,10 @@ Prepare your stickers in structure like the following
         |- dancing07.png
 ```
 
+## Demo
+
+[Here](https://www.dropbox.com/s/tre94ak4fl5dsvk/imsticker.mp4?dl=0).
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/nicnocquee/imsticker.
