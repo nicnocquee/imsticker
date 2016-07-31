@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["nicnocquee@users.noreply.github.com"]
 
   spec.summary       = %q{Quickly create iMessage Sticker Pack Xcode Project}
-  spec.description   = %q{Quickly create iMessage Sticker Pack Xcode Project}
+  spec.description   = %q{This is a gem to quickly create iMessage Sticker Pack Xcode project from command line. You just need to prepare your sticker images and sticker sequence in a folder, and run one command.}
   spec.homepage      = "https://github.com/nicnocquee/imsticker.git"
   spec.license       = "MIT"
 

@@ -1,41 +1,46 @@
 # Imsticker
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/imsticker`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is a gem to quickly create iMessage Sticker Pack Xcode project from command line. You just need to prepare your sticker images and sticker sequence in a folder, and run one command.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'imsticker'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install imsticker
+    $ gem install -g imsticker
 
 ## Usage
 
-TODO: Write usage instructions here
+1. Create a directory for your project.
+2. Create `stickers` directory inside your project directory and put all your stickers in it. Sticker sequence should be grouped in a directory.
+3. Create an icon for the sticker pack with name `icon1024x768.png` and size `1024x768 px`.
+4. Run `imsticker init` in the root directory of your project.
+5. Edit `info.json` file to edit the name of your project.
+6. Run `imsticker`.
+7. Your Xcode project will be created inside `output` directory.
 
-## Development
+## Stickers
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Prepare your stickers in structure like the following
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```
+- project_dir
+  |- info.json
+  |- icon1024x768.png
+  |- stickers
+     |- happy.png
+     |- mad.png
+     |- dancing
+        |- dancing01.png
+        |- dancing02.png
+        |- dancing03.png
+        |- dancing04.png
+        |- dancing05.png
+        |- dancing06.png
+        |- dancing07.png
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/imsticker.
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/nicnocquee/imsticker.
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
