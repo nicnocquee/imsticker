@@ -20,7 +20,7 @@ This is a gem to quickly create iMessage Sticker Pack Xcode project from command
 4. Run `imsticker init` in the root directory of your project.
 5. Edit `info.json` file to edit the name of your project.
 6. Run `imsticker`.
-7. Your Xcode project will be created inside `output` directory.
+7. Your Xcode project will be created inside `output` directory. Open it using Xcode 8 or later.
 
 ## Stickers
 
