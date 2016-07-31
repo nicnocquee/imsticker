@@ -1,6 +1,6 @@
 # Imsticker
 
-This is a gem to quickly create iMessage Sticker Pack Xcode project from command line. You just need to prepare your sticker images and sticker sequence in a folder, and run one command.
+This is a gem to quickly create iMessage Sticker Pack Xcode project from command line. You just need to prepare your sticker images and sticker sequence (animated sticker!) in a folder, and run one command. No need to drag and drop and clicking around in Xcode.
 
 ## Installation
 
@@ -39,7 +39,7 @@ Prepare your stickers in structure like the following
 
 ## Demo
 
-[Here](https://www.dropbox.com/s/tre94ak4fl5dsvk/imsticker.mp4?dl=0).
+[Here](https://www.dropbox.com/s/ddw39xra1mf88pl/imsticker2.mp4?dl=0).
 
 ## Contributing
 
