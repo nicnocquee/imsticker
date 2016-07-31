@@ -44,7 +44,6 @@ module Imsticker
 
     # copy the template to temp directory
     proj_tmp_dir = Dir.mktmpdir
-    puts "Creating temp directory to #{proj_tmp_dir} and copy the templates ..."
     FileUtils.cp_r template_dir, proj_tmp_dir
     proj_tmp_dir = File.join(proj_tmp_dir, 'template')
 
@@ -57,7 +56,6 @@ module Imsticker
     supported_files = File.join(File.join('.', 'stickers'), "*.{#{supported_exts.join(',')}}")
 
     sticker_target_directory = File.join(File.join(File.join(proj_tmp_dir, 'StickerPackExtension'), 'Stickers.xcstickers'), "Sticker Pack.stickerpack")
-    puts sticker_target_directory
     sticker_contents_json = {
       'info' => {
         'version' => 1,
@@ -92,7 +90,6 @@ module Imsticker
         sticker_entry = ''
         # if single sticker, write Contents.json in it with content following Contents-sticker.json, copy the image file to the directory.
         if supported_exts.include?(ext)
-            puts "Single sticker: #{entry}"
             sticker_entry = "#{file_name_without_ext}.sticker"
             sticker_dir = File.join(sticker_target_directory, sticker_entry)
             Dir.mkdir(sticker_dir)
@@ -106,7 +103,6 @@ module Imsticker
 
         # if stickersequence, write Contents.json in it with content following Contents-stickersequence.json, copy the images files to the dir.
         if File.directory?(file)
-          puts "Sticker Sequence: #{entry}"
           sticker_entry = "#{file_name_without_ext}.stickersequence"
           sticker_dir = File.join(sticker_target_directory, sticker_entry)
           Dir.mkdir(sticker_dir)
@@ -219,7 +215,6 @@ module Imsticker
       FileUtils.rm_rf template_dir
     end
     parent = Pathname.new(template_dir).parent()
-    puts parent
     if File.exist?(parent)
       FileUtils.rm_rf File.join(parent, 'iOStickersTemplate-master')
     end
