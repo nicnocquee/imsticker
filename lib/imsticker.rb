@@ -8,9 +8,10 @@ require 'pathname'
 module Imsticker
 
   def self.generate
+    info_message
     # check if info.json exists
     if File.exist?("info.json") == false
-      raise "Where is your info.json file?"
+      raise "Where is your info.json file? Create it by running `imsticker init`"
     end
     if Dir.exist?('stickers') == false
       raise "Cannot find `stickers` directory in current directory."
@@ -248,5 +249,28 @@ module Imsticker
         end
       end
     }
+  end
+
+  def self.info_message
+    puts ""
+    puts ""
+    puts "================================"
+    puts "imsticker v#{Imsticker::VERSION}"
+    puts "================================"
+    puts ""
+    puts ""
+  end
+
+  def self.init
+    info_message
+    info = {
+      "name" => "Awesome stickers",
+      "website" => "http://delightfuldev.com"
+    }
+    json = JSON.pretty_generate(info)
+    File.open('info.json', "w") {|f|
+        f.write(json)
+    }
+    puts "Created `info.json` in current directory. Edit it to your liking."
   end
 end

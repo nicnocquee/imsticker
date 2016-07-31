@@ -2,4 +2,9 @@
 
 require "imsticker"
 
-Imsticker.generate
+command = ARGV.shift
+if command == 'init'
+  Imsticker.init
+else
+  Imsticker.generate
+end
