@@ -10,7 +10,7 @@ This is a gem to quickly create iMessage Sticker Pack Xcode project from command
 
 ## Installation
 
-    $ gem install -g imsticker
+    $ gem install imsticker
 
 ## Usage
 
