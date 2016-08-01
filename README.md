@@ -43,6 +43,10 @@ Prepare your stickers in structure like the following
         |- dancing07.png
 ```
 
+- Stickers should be between 300 x 300 pixels and 618 x 618 pixels.
+- The image must be a PNG, APNG, GIF or JPEG file.
+- The file must be less than 500KB.
+
 ## Demo
 
 [Here](https://www.dropbox.com/s/ddw39xra1mf88pl/imsticker2.mp4?dl=0).
