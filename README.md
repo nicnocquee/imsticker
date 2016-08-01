@@ -49,7 +49,9 @@ Prepare your stickers in structure like the following
 
 ## Demo
 
-[Here](https://www.dropbox.com/s/ddw39xra1mf88pl/imsticker2.mp4?dl=0).
+[Video Here](https://www.dropbox.com/s/ddw39xra1mf88pl/imsticker2.mp4?dl=0). Or GIF below.
+
+![imsticker demo gif](https://www.dropbox.com/s/nl79yddzblr9nq1/imsticker.gif?dl=1)
 
 ## Contributing
 
